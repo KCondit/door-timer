@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: door-timer
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: DOOR_API_KEY
+        value: changeme   # Change this to something secret!
