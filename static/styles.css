@@ -7,7 +7,6 @@ body {
     color: #fff;
     overflow-x: hidden;
 }
-
 .dashboard-card {
     max-width: 400px;
     margin: 60px auto 30px auto;
@@ -19,37 +18,29 @@ body {
     border: 2px solid #33fff3;
     animation: neon-glow 1.8s infinite alternate;
 }
-
 @keyframes neon-glow {
-    from {
-        box-shadow: 0 0 40px 8px #33fff3, 0 6px 24px rgba(40, 0, 80, 0.4);
-        border-color: #33fff3;
-    }
-    to {
-        box-shadow: 0 0 80px 16px #ff33ef, 0 6px 24px rgba(40, 0, 80, 0.7);
-        border-color: #ff33ef;
-    }
+    from { box-shadow: 0 0 40px 8px #33fff3; border-color: #33fff3; }
+    to { box-shadow: 0 0 80px 16px #ff33ef; border-color: #ff33ef; }
 }
 
 .door-state {
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1.2rem;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px #33fff3, 0 0 20px #ff33ef;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff33ef;
     transition: color 0.4s, text-shadow 0.4s;
 }
-.door-state.closed { color: #33ff65; text-shadow: 0 0 18px #33ff65, 0 0 22px #09ffb2;}
-.door-state.open { color: #ff335e; text-shadow: 0 0 18px #ff335e, 0 0 22px #ff33ef;}
+.door-state.closed { color: #dc3545; text-shadow: 0 0 18px #ff335e, 0 0 22px #ff33ef;} /* Red */
+.door-state.open { color: #33ff65; text-shadow: 0 0 18px #33ff65, 0 0 22px #09ffb2;} /* Green */
 
 .timer-value {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: #fffb33;
     margin-bottom: 1rem;
     text-shadow: 0 0 10px #fffb33, 0 0 15px #fff;
 }
-
 .icon {
     font-size: 3.5rem;
     margin-bottom: 1.2rem;
@@ -58,12 +49,10 @@ body {
     animation: pulse-icon 1.2s infinite alternate;
     transition: color 0.3s, text-shadow 0.3s;
 }
-
 @keyframes pulse-icon {
     0% { color: #33fff3; text-shadow: 0 0 25px #33fff3; }
     100% { color: #ff33ef; text-shadow: 0 0 35px #ff33ef; }
 }
-
 .footer {
     margin-top: 2rem;
     text-align: center;
@@ -73,7 +62,6 @@ body {
     text-shadow: 0 0 6px #33fff3, 0 0 10px #ff33ef;
     opacity: 0.8;
 }
-
 ::-webkit-scrollbar {
     width: 10px;
     background: #330066;
