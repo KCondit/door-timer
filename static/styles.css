@@ -8,7 +8,7 @@ body {
     overflow-x: hidden;
 }
 .dashboard-card {
-    max-width: 400px;
+    max-width: 600px;
     margin: 60px auto 30px auto;
     padding: 2.5rem 2rem;
     border-radius: 2rem;
