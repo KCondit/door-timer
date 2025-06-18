@@ -34,6 +34,3 @@ def status():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-@app.route("/status", methods=["GET"])
-def status():
-    return jsonify(door_state=door_state, timer=int(float(timer)))
