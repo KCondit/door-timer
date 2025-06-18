@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Door Timer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1c2ac3b0da.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="dashboard-card">
+        <div class="icon">
+            <i class="fa-solid fa-door-closed" id="door-icon"></i>
+        </div>
+        <div id="door-state" class="door-state {{ 'closed' if door_state == 'closed' else 'open' }}">
+            {{ door_state|capitalize }}
+        </div>
+        <div class="timer-value" id="timer">
+            {{ timer }} seconds
+        </div>
+    </div>
+    <div class="footer">
+        &copy; {{ 2025 }} Door Timer Dashboard
+    </div>
+    <script>
+      function poll() {
+        fetch('/status').then(r => r.json()).then(data => {
+          // Update door state text and color
+          let stateDiv = document.getElementById('door-state');
+          stateDiv.textContent = data.door_state.charAt(0).toUpperCase() + data.door_state.slice(1);
+          stateDiv.className = "door-state " + (data.door_state === "closed" ? "closed" : "open");
 
+          // Update timer
+          document.getElementById('timer').textContent = data.timer + ' seconds';
+
+          // Update icon
+          let icon = document.getElementById('door-icon');
+          if (data.door_state === "closed") {
+            icon.className = "fa-solid fa-door-closed icon";
+            icon.style.color = "#007bff";
+          } else {
+            icon.className = "fa-solid fa-door-open icon";
+            icon.style.color = "#dc3545";
+          }
+        });
+      }
+      setInterval(poll, 1000);
+    </script>
+</body>
+</html>
