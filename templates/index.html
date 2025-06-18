@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Condit Bathroom Tracker</title>
+    <title>Door Timer Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,37 +15,42 @@
             <i class="fa-solid fa-door-closed" id="door-icon"></i>
         </div>
         <div id="door-state" class="door-state {{ 'closed' if door_state == 'closed' else 'open' }}">
-            {{ door_state|capitalize }}
+            <!-- State text will be set by JS -->
         </div>
-        <div class="timer-value" id="timer">
-            {{ timer }} seconds
+        <div class="timer-value" id="timer" style="display:none;">
+            <!-- Timer value will be set by JS -->
         </div>
     </div>
     <div class="footer">
-        &copy; {{ 2025 }} Mama Condit
+        &copy; {{ 2025 }} Door Timer Dashboard
     </div>
     <script>
       function poll() {
         fetch('/status').then(r => r.json()).then(data => {
-          // Update door state text and color
           let stateDiv = document.getElementById('door-state');
-          stateDiv.textContent = data.door_state.charAt(0).toUpperCase() + data.door_state.slice(1);
-          stateDiv.className = "door-state " + (data.door_state === "closed" ? "closed" : "open");
-
-          // Update timer
-          document.getElementById('timer').textContent = data.timer + ' seconds';
-
-          // Update icon
+          let timerDiv = document.getElementById('timer');
           let icon = document.getElementById('door-icon');
+
           if (data.door_state === "closed") {
+            // Show "In use" in red and show timer
+            stateDiv.textContent = "Downstairs bathroom in use";
+            stateDiv.className = "door-state closed";
+            timerDiv.textContent = data.timer + ' seconds';
+            timerDiv.style.display = "block";
             icon.className = "fa-solid fa-door-closed icon";
-            icon.style.color = "#007bff";
+            icon.style.color = "#dc3545"; // Red
           } else {
+            // Show "Open" in default color and hide timer
+            stateDiv.textContent = "Downstairs bathroom open";
+            stateDiv.className = "door-state open";
+            timerDiv.style.display = "none";
             icon.className = "fa-solid fa-door-open icon";
-            icon.style.color = "#dc3545";
+            icon.style.color = "#33ff65"; // Green
           }
         });
       }
+      // Call poll immediately and then every second
+      poll();
       setInterval(poll, 1000);
     </script>
 </body>
