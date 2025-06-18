@@ -1,1 +1,47 @@
-
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #f8fafc, #e0eaff 80%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.dashboard-card {
+    max-width: 400px;
+    margin: 60px auto 20px auto;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 6px 24px rgba(70, 130, 180, 0.18);
+    border-radius: 2rem;
+    background: white;
+    text-align: center;
+    transition: box-shadow 0.3s;
+}
+.dashboard-card:hover {
+    box-shadow: 0 8px 32px rgba(70, 130, 180, 0.28);
+}
+.door-state {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    transition: color 0.4s;
+}
+.door-state.closed { color: #28a745; }    /* green */
+.door-state.open { color: #dc3545; }      /* red */
+.timer-value {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+.icon {
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    color: #007bff;
+    transition: color 0.4s;
+}
+.footer {
+    margin-top: 2rem;
+    text-align: center;
+    color: #999;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
