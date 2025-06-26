@@ -1,6 +1,7 @@
 body {
-    font-family: 'Montserrat', Arial, sans-serif;
-    background: linear-gradient(135deg, #1a0033 0%, #330066 100%);
+    font-family: 'Lato', Arial, sans-serif;
+    font-weight: 900;
+    background: #e97338;
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -13,14 +14,14 @@ body {
     padding: 2.5rem 2rem;
     border-radius: 2rem;
     text-align: center;
-    background: rgba(34, 0, 51, 0.9);
-    box-shadow: 0 0 40px 8px #33fff3, 0 6px 24px rgba(40, 0, 80, 0.4);
-    border: 2px solid #33fff3;
+    background: rgba(0, 56, 92, 0.9);
+    box-shadow: 0 0 40px 8px #00385c, 0 6px 24px rgba(0, 56, 92, 0.4);
+    border: 2px solid #00385c;
     animation: neon-glow 1.8s infinite alternate;
 }
 @keyframes neon-glow {
-    from { box-shadow: 0 0 40px 8px #33fff3; border-color: #33fff3; }
-    to { box-shadow: 0 0 80px 16px #ff33ef; border-color: #ff33ef; }
+    from { box-shadow: 0 0 40px 8px #00385c; border-color: #00385c; }
+    to { box-shadow: 0 0 80px 16px #9f9a2b; border-color: #9f9a2b; }
 }
 
 .door-state {
@@ -28,45 +29,46 @@ body {
     font-weight: 700;
     margin-bottom: 1.2rem;
     letter-spacing: 1px;
-    text-shadow: 0 0 10px #fff, 0 0 20px #ff33ef;
+    text-shadow: 0 0 10px #fff, 0 0 20px #9f9a2b;
     transition: color 0.4s, text-shadow 0.4s;
 }
-.door-state.closed { color: #dc3545; text-shadow: 0 0 18px #ff335e, 0 0 22px #ff33ef;} /* Red */
-.door-state.open { color: #33ff65; text-shadow: 0 0 18px #33ff65, 0 0 22px #09ffb2;} /* Green */
+.door-state.closed { color: #dc3545; text-shadow: 0 0 18px #ff335e, 0 0 22px #9f9a2b;} /* Red */
+.door-state.open { color: #9f9a2b; text-shadow: 0 0 18px #9f9a2b, 0 0 22px #00385c;} /* Green */
 
 .timer-value {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #fffb33;
+    color: #fcc725;
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px #fffb33, 0 0 15px #fff;
+    text-shadow: 0 0 10px #fcc725, 0 0 15px #fff;
 }
 .icon {
     font-size: 3.5rem;
     margin-bottom: 1.2rem;
-    color: #33fff3;
-    text-shadow: 0 0 25px #33fff3, 0 0 18px #09ffb2;
+    color: #00385c;
+    text-shadow: 0 0 25px #00385c, 0 0 18px #9f9a2b;
     animation: pulse-icon 1.2s infinite alternate;
     transition: color 0.3s, text-shadow 0.3s;
 }
 @keyframes pulse-icon {
-    0% { color: #33fff3; text-shadow: 0 0 25px #33fff3; }
-    100% { color: #ff33ef; text-shadow: 0 0 35px #ff33ef; }
+    0% { color: #00385c; text-shadow: 0 0 25px #00385c; }
+    100% { color: #9f9a2b; text-shadow: 0 0 35px #9f9a2b; }
 }
 .footer {
     margin-top: 2rem;
     text-align: center;
+    font-family: 'Actor', Arial, sans-serif;
     color: #a3a3a3;
     font-size: 1.05rem;
     letter-spacing: 1px;
-    text-shadow: 0 0 6px #33fff3, 0 0 10px #ff33ef;
+    text-shadow: 0 0 6px #00385c, 0 0 10px #9f9a2b;
     opacity: 0.8;
 }
 ::-webkit-scrollbar {
     width: 10px;
-    background: #330066;
+    background: #e97338;
 }
 ::-webkit-scrollbar-thumb {
-    background: #33fff3;
+    background: #00385c;
     border-radius: 10px;
 }
