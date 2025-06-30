@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Door Timer Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Import Lato ExtraBold and Actor from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Lato:wght@900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/1c2ac3b0da.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -38,14 +39,14 @@
             timerDiv.textContent = data.timer + ' seconds';
             timerDiv.style.display = "block";
             icon.className = "fa-solid fa-door-closed icon";
-            icon.style.color = "#dc3545"; // Red
+            icon.style.color = "#dc3545"; // Red for closed
           } else {
-            // Show "Open" in default color and hide timer
+            // Show "Open" in green and hide timer
             stateDiv.textContent = "Downstairs bathroom open";
             stateDiv.className = "door-state open";
             timerDiv.style.display = "none";
             icon.className = "fa-solid fa-door-open icon";
-            icon.style.color = "#33ff65"; // Green
+            icon.style.color = "#9f9a2b"; // Leaf green for open
           }
         });
       }
