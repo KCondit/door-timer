@@ -22,6 +22,18 @@
             <!-- Timer value will be set by JS -->
         </div>
     </div>
+
+    <h2>Bathroom Session Log</h2>
+<table>
+  <tr><th>Start</th><th>End</th><th>Duration (s)</th></tr>
+  {% for session in session_log %}
+    <tr>
+      <td>{{ session.start }}</td>
+      <td>{{ session.end }}</td>
+      <td>{{ session.duration }}</td>
+    </tr>
+  {% endfor %}
+</table>
     <div class="footer">
         &copy; {{ 2025 }} Mama Condit
     </div>
