@@ -14,6 +14,11 @@ session_log = []  # Each entry: {'start': ..., 'end': ..., 'duration': ...}
 current_session_start = None
 previous_state = None
 
+def format_duration(seconds):
+    minutes = seconds // 60
+    secs = seconds % 60
+    return f"{minutes} mins, {secs} secs" if minutes else f"{secs} secs"
+
 @app.route("/", methods=["GET"])
 def index():
     return render_template(
@@ -47,10 +52,11 @@ def update():
         # End of session (door just opened)
         elif previous_state == "closed" and new_state == "open" and current_session_start is not None:
             print("Session ENDED at", now)
+            duration_secs = int(now - current_session_start)
             session = {
                 "start": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(current_session_start)),
                 "end": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now)),
-                "duration": int(now - current_session_start)
+                "duration": format_duration(duration_secs)
             }
             session_log.append(session)
             del session_log[:-50]  # Keep only the last 50
