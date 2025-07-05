@@ -39,25 +39,25 @@ def update():
     now = time.time()
     print("PREV STATE:", previous_state, "NEW STATE:", new_state)
     print("current_session_start:", current_session_start)
-if previous_state is not None:
-    # Start of session
-    if previous_state == "open" and new_state == "closed":
-        print("Session STARTED at", now)
-        current_session_start = now
-    # End of session: add to log
-    elif previous_state == "closed" and new_state == "open" and current_session_start is not None:
-        print("Session ENDED at", now)
-        session = {
-            "start": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(current_session_start)),
-            "end": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now)),
-            "duration": int(now - current_session_start)
-        }
-        session_log.append(session)
-        del session_log[:-50]
-        print("Session LOGGED:", session)
-        current_session_start = None
-    previous_state = new_state
+    if previous_state is not None:
+        # Start of session (door just closed)
+        if previous_state == "open" and new_state == "closed":
+            print("Session STARTED at", now)
+            current_session_start = now
+        # End of session (door just opened)
+        elif previous_state == "closed" and new_state == "open" and current_session_start is not None:
+            print("Session ENDED at", now)
+            session = {
+                "start": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(current_session_start)),
+                "end": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now)),
+                "duration": int(now - current_session_start)
+            }
+            session_log.append(session)
+            del session_log[:-50]  # Keep only the last 50
+            print("Session LOGGED:", session)
+            current_session_start = None
 
+    previous_state = new_state
     door_state = new_state
     timer = new_timer
     return "OK"
