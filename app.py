@@ -83,5 +83,9 @@ def update():
 def status():
     return jsonify(door_state=door_state, timer=int(float(timer)))
 
+@app.route("/sessions", methods=["GET"])
+def sessions():
+    return jsonify(session_log=session_log[::-1])  # Most recent first
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
