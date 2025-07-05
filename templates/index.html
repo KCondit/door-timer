@@ -32,13 +32,9 @@
     <th>Session End</th>
     <th>Duration</th>
   </tr>
-  {% for session in session_log %}
-    <tr>
-      <td>{{ session.start }}</td>
-      <td>{{ session.end }}</td>
-      <td>{{ session.duration }}</td>
-    </tr>
-  {% endfor %}
+  <tbody id="session-table-body">
+    <!-- JavaScript will populate this -->
+  </tbody>
 </table>
 {% else %}
 <p>No bathroom sessions yet.</p>
