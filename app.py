@@ -50,7 +50,7 @@ def update():
             }
             session_log.append(session)
             # Keep only last 50
-            session_log = session_log[-50:]
+            del session_log[:-50]
             current_session_start = None
     previous_state = new_state
 
