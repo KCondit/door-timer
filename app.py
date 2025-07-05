@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, abort, jsonify
 import os
 import time
+from datetime import datetime
+import pytz
 
 app = Flask(__name__)
 
@@ -10,14 +12,24 @@ timer = 0.0
 API_KEY = os.environ.get("DOOR_API_KEY", "changeme")
 
 # For session logging
-session_log = []  # Each entry: {'start': ..., 'end': ..., 'duration': ...}
+session_log = []
 current_session_start = None
 previous_state = None
 
 def format_duration(seconds):
     minutes = seconds // 60
     secs = seconds % 60
-    return f"{minutes} mins, {secs} secs" if minutes else f"{secs} secs"
+    if minutes > 0:
+        return f"{minutes} minute{'s' if minutes != 1 else ''}, {secs} second{'s' if secs != 1 else ''}"
+    else:
+        return f"{secs} second{'s' if secs != 1 else ''}"
+
+def format_date(ts):
+    # Display in Hawaii time
+    tz = pytz.timezone('Pacific/Honolulu')
+    dt = datetime.fromtimestamp(ts, tz)
+    # For platforms that don't support %-d or %-I, just use %d and %I (may have leading zeros)
+    return dt.strftime('%B %-d, %Y at %-I:%M%p HST') if hasattr(dt, 'strftime') else dt.strftime('%B %d, %Y at %I:%M%p HST')
 
 @app.route("/", methods=["GET"])
 def index():
@@ -25,7 +37,7 @@ def index():
         "index.html",
         door_state=door_state,
         timer=int(float(timer)),
-        session_log=session_log[::-1]  # Show most recent first
+        session_log=session_log[::-1],  # Show most recent first
     )
 
 @app.route("/update", methods=["POST"])
@@ -40,7 +52,6 @@ def update():
     except ValueError:
         new_timer = 0.0
 
-    # Detect transitions for session logging
     now = time.time()
     print("PREV STATE:", previous_state, "NEW STATE:", new_state)
     print("current_session_start:", current_session_start)
@@ -54,12 +65,12 @@ def update():
             print("Session ENDED at", now)
             duration_secs = int(now - current_session_start)
             session = {
-                "start": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(current_session_start)),
-                "end": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now)),
+                "start": format_date(current_session_start),
+                "end": format_date(now),
                 "duration": format_duration(duration_secs)
             }
             session_log.append(session)
-            del session_log[:-50]  # Keep only the last 50
+            del session_log[:-50]  # Keep last 50
             print("Session LOGGED:", session)
             current_session_start = None
 
