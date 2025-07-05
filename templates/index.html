@@ -52,7 +52,16 @@
             // Show "In use" in red and show timer
             stateDiv.textContent = "Downstairs bathroom in use";
             stateDiv.className = "door-state closed";
-            timerDiv.textContent = data.timer + ' seconds';
+            function formatDuration(secs) {
+              const minutes = Math.floor(secs / 60);
+              const seconds = secs % 60;
+              if (minutes > 0) {
+                return `${minutes} minute${minutes !== 1 ? 's' : ''}, ${seconds} second${seconds !== 1 ? 's' : ''}`;
+              } else {
+                return `${seconds} second${seconds !== 1 ? 's' : ''}`;
+              }
+            }
+timerDiv.textContent = formatDuration(data.timer);
             timerDiv.style.display = "block";
             icon.className = "fa-solid fa-door-closed icon";
             icon.style.color = "#dc3545"; // Red for closed
