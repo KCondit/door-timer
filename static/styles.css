@@ -83,3 +83,62 @@ body {
     background: #fcc725; /* Mustard */
     border-radius: 10px;
 }
+
+/* Session Log Styles */
+.session-log-card {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 2rem;
+    border-radius: 2rem;
+    background: #00385c; /* Navy blue card */
+    box-shadow: 0 0 40px 8px #fcc725, 0 6px 24px rgba(0, 56, 92, 0.4); /* Mustard glow */
+    border: 3px solid #fcc725;
+}
+
+.session-log-title {
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fcc725;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px #fcc725, 0 0 20px #fff;
+}
+
+.session-log-container {
+    overflow-x: auto;
+}
+
+.session-log-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-family: 'Lato', Arial, sans-serif;
+}
+
+.session-log-table th {
+    background: #fcc725;
+    color: #00385c;
+    font-weight: 900;
+    padding: 0.8rem;
+    text-align: left;
+    border: 2px solid #00385c;
+    font-size: 1rem;
+}
+
+.session-log-table td {
+    padding: 0.8rem;
+    border: 1px solid #fcc725;
+    color: #fcc725;
+    font-weight: 600;
+    background: rgba(252, 199, 37, 0.1);
+}
+
+.session-log-table tr:nth-child(even) td {
+    background: rgba(252, 199, 37, 0.2);
+}
+
+.session-log-table tr:hover td {
+    background: rgba(252, 199, 37, 0.3);
+    text-shadow: 0 0 5px #fcc725;
+}

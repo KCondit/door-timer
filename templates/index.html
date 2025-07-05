@@ -22,6 +22,34 @@
             <!-- Timer value will be set by JS -->
         </div>
     </div>
+    
+    <!-- Session Log Section -->
+    {% if session_log %}
+    <div class="session-log-card">
+        <h2 class="session-log-title">Recent Bathroom Sessions</h2>
+        <div class="session-log-container">
+            <table class="session-log-table">
+                <thead>
+                    <tr>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for session in session_log|reverse %}
+                    <tr>
+                        <td>{{ session.start }}</td>
+                        <td>{{ session.end }}</td>
+                        <td>{{ session.duration }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+    
     <div class="footer">
         &copy; {{ 2025 }} Mama Condit
     </div>
