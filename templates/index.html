@@ -80,5 +80,32 @@ timerDiv.textContent = formatDuration(data.timer);
       poll();
       setInterval(poll, 1000);
     </script>
+
+<script>
+function renderSessions(sessions) {
+  const tableBody = document.getElementById('session-table-body');
+  tableBody.innerHTML = '';
+  for (const s of sessions) {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${s.start}</td>
+      <td>${s.end}</td>
+      <td>${s.duration}</td>
+    `;
+    tableBody.appendChild(row);
+  }
+}
+
+function pollSessions() {
+  fetch('/sessions').then(r => r.json()).then(data => {
+    renderSessions(data.session_log);
+  });
+}
+
+// Call pollSessions immediately and then every 5 seconds
+pollSessions();
+setInterval(pollSessions, 5000);
+</script>
+
 </body>
 </html>
