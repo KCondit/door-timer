@@ -23,9 +23,10 @@
         </div>
     </div>
 
-    <h2>Bathroom Session Log</h2>
+<h2>Bathroom Session Log</h2>
+{% if session_log %}
 <table>
-  <tr><th>Start</th><th>End</th><th>Duration (s)</th></tr>
+  <tr><th>Start</th><th>End</th><th>Duration</th></tr>
   {% for session in session_log %}
     <tr>
       <td>{{ session.start }}</td>
@@ -34,6 +35,9 @@
     </tr>
   {% endfor %}
 </table>
+{% else %}
+<p>No bathroom sessions yet.</p>
+{% endif %}
     <div class="footer">
         &copy; {{ 2025 }} Mama Condit
     </div>
